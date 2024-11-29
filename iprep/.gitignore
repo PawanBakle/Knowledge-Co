@@ -1,0 +1,29 @@
+*.log
+*.pot
+*.pyc
+__pycache__/
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+media/
+
+# Python-specific ignores
+*.py[cod]
+*$py.class
+venv/
+env/
+
+ Environment files
+.env
+*.env
+!example.env
+
+# IDE-specific files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Operating System files
+.DS_Store
+Thumbs.db
