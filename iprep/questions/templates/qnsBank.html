@@ -10,6 +10,7 @@
       <title>Consume Rest Api</title>
   </head>
   <body>
+    <!-- <h2>Problems Tagged with "{{ tag }}"</h2> -->
       <div class="container-fluid p-2 bg-primary text-white text-center">
           <h1>Users</h1>
       </div>
@@ -22,26 +23,37 @@
                     <th>name</th>
                     <th>tags</th>
                     <th>rating</th>
+                    <th>link</th>
                 </tr>
             </thead>
             <tbody>
                 {% for problem in problems %}
                     <tr>
+                        <td>{{ problem.contestId }}</td>
                         <td>{{ problem.index }}</td>
                         <td>{{ problem.name }}</td>
-                        <td>{{ problem.type }}</td>
+                        <!-- {% for i in problem.tags %}
+                        {% if i == 'binary search' %}
+                        <td>{{ i }}</td>
+                        {% else %}
+                        <td>{{ i }}</td>
+                        {% endif %}
+                        {% endfor %} -->
+                        
+                        {% if problem.tags %}
+                            <td>{{ problem.tags }}</td>
+                        {% else %}
+                        <td>No Tags </td>
+                        {% endif %}
                         <td>{{ problem.rating }}</td>
                         <td>
-                            {% for tag in problem.tags %}
-                                {{ tag }}{% if not forloop.last %}, {% endif %}
-                            {% empty %}
-                                No Tags
-                            {% endfor %}
-                        </td>
-                    </tr>
-                {% empty %}
-                    <tr>
-                        <td colspan="5">No problems found.</td>
+                        {% if problem.contestId and problem.index %}
+                        <a href="https://codeforces.com/problemset/problem/{{ problem.contestId }}/{{ problem.index }}" target="_blank">
+                            View Problem
+                        </a>
+                    {% else %}
+                        No Link Available
+                    {% endif %}</td>
                     </tr>
                 {% endfor %}
             </tbody>
